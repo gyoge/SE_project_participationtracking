@@ -2,9 +2,12 @@ package model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -12,22 +15,22 @@ import javax.persistence.Table;
 public class Memberinfo {
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id")
+	@Column(name="id", nullable = false)
 	private int id;
 	
-	@Column(name = "userid")
+	@Column(name = "userid", nullable = false)
 	private String userid;
 
-	@Column(name = "email")
+	@Column(name = "email", nullable = false)
 	private String email;
 	   
-	@Column(name = "password")
+	@Column(name = "password", nullable = false)
 	private String password;
 	   
-	@Column(name = "salt")
+	@Column(name = "salt", nullable = false)
 	private String salt;
 	   
-	@Column(name = "name")
+	@Column(name = "name", nullable = false)
 	private String name;
 	   
 	@Column(name = "address")
@@ -36,7 +39,8 @@ public class Memberinfo {
 	@Column(name = "phonenum")
 	private String phonenum;
 	   
-	@Column(name = "role_id")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "role_id", nullable = false)
 	private int role_id;
 
 	public int getId() {
