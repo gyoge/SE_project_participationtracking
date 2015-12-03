@@ -8,5 +8,8 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="lib" path="/HibernateTest/lib/required/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="/Studinfo/WebContent/WEB-INF/lib/optional/infinispan/jgroups-3.6.2.Final.jar"/>
+	<classpathentry kind="lib" path="/Studinfo/WebContent/WEB-INF/lib/required/dom4j-1.6.1.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
