@@ -33,6 +33,7 @@ public class LoginController extends HttpServlet{
 		
 		Session session = sf.openSession();
 		List<Memberinfo> list = session.createCriteria(Memberinfo.class).list();
+		respons
 		
 		request.getRequestDispatcher("/WEB-INF/view/index.jsp").forward(request, response);
 		

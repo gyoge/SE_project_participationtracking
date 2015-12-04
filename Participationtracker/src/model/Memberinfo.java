@@ -38,9 +38,9 @@ public class Memberinfo {
 	@Column(name = "phonenum")
 	private String phonenum;
 	   
-	@ManyToOne(targetEntity=Role.class)
-	@JoinColumn(name="role_id")
-	private Role role;
+	//@ManyToOne(targetEntity=Role.class)
+	//@JoinColumn(name="role_id")
+	//private Role role;
 
 	public int getId() {
 		return id;
@@ -96,11 +96,11 @@ public class Memberinfo {
 
 	public Role getRole() {
 		//return role;
-		return role;
+		return null;
 	}
 
 	public void setRole(Role role) {
-		this.role = role;
+		//this.role = role;
 	}
 	
 	public static String validateEmail(String email){
