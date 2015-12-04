@@ -2,7 +2,6 @@ package model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -39,9 +38,9 @@ public class Memberinfo {
 	@Column(name = "phonenum")
 	private String phonenum;
 	   
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "role_id", nullable = false)
-	private int role_id;
+	@ManyToOne(targetEntity=Role.class)
+	@JoinColumn(name="role_id")
+	private Role role;
 
 	public int getId() {
 		return id;
@@ -95,12 +94,13 @@ public class Memberinfo {
 		this.phonenum = phonenum;
 	}
 
-	public int getRole_id() {
-		return role_id;
+	public Role getRole() {
+		//return role;
+		return role;
 	}
 
-	public void setRole_id(int role_id) {
-		this.role_id = role_id;
+	public void setRole(Role role) {
+		this.role = role;
 	}
 	
 	public static String validateEmail(String email){
