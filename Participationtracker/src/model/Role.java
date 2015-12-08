@@ -21,7 +21,7 @@ public class Role {
 	@Column(name="name")
 	private String name;
 	
-	@OneToMany(mappedBy="memberinfo")
+	@OneToMany(mappedBy="role")
 	private Set<Memberinfo> members;
 
 	public int getId() {

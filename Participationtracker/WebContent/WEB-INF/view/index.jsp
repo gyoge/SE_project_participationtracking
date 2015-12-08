@@ -7,6 +7,24 @@
 <title>Insert title here</title>
 </head>
 <body>
-Hello world
+
+<form action="/Login" method="POST">
+<table>
+<tr>
+<th>Name</th>
+<th>Uid</th>
+<th>Email</th>
+<th>Role</th>
+</tr>
+<tr>
+
+<td><%= request.getAttribute( "name" ) %></td>
+<td><%= request.getAttribute( "uuid" ) %></td>
+<td><%= request.getAttribute( "email" ) %></td>
+<td><%= request.getAttribute( "role" ) %></td>
+</tr>
+
+</table>
+</form>
 </body>
 </html>
