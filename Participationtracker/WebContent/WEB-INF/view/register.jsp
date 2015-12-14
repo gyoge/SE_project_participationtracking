@@ -11,41 +11,45 @@
 <form action="Register" method="POST">
 
 <div>
-<label>Name</label>
-<input type="text" name="name" value="Gergely Györki">
+	<div>
+	<label>Name</label>
+	</div>
+	<div>
+	<input type="text" name="name" value="Gergely Györki" />
+	</div>
 </div>
 
 <div>
-<label>Uuid</label>
-<input type="text" name="uuid" value="e1100625">
+<div><label>Uuid</label></div>
+<div><input type="text" name="uuid" value="e1100625" /></div>
 </div>
 
 <div>
-<label>Email</label>
-<input type="text" name="email" value="e1100625@edu.vamk.fi">
+<div><label>Email</label></div>
+<div><input type="text" name="email" value="e1100625@edu.vamk.fi" /></div>
 </div>
 
 <div>
-<label>Password</label>
-<input type="password" name="password">
+<div><label>Password</label></div>
+<div><input type="password" name="password" /></div>
 </div>
 
 <div>
-<label>Password again</label>
-<input type="password" name="password_again">
+<div><label>Password again</label></div>
+<div><input type="password" name="password_again" /></div>
 </div>
 
 <div>
-<label>Address</label>
-<input type="text" name="address" value="e11">
+<div><label>Address</label></div>
+<div><input type="text" name="address" value="e11" /></div>
 </div>
 
 <div>
-<label>Phone number</label>
-<input type="text" name="phonenum" value="1234">
+<div><label>Phone number</label></div>
+<div><input type="text" name="phonenum" value="1234" /></div>
 </div>
 
-<input type="submit" value="Submit">
+<input type="submit" value="Submit" />
 
 </form>
 </body>

@@ -9,15 +9,18 @@
 </head>
 <body>
 <div>
+<form action="Login" method="POST">
 	<div>
 	<div><label for="userid">User ID:</label></div>
-	<div><input id="userid" type="text"></div>
+	<div><input name="userid" type="text"></div>
 	</div>
 	<div>
 	<div><label for="password">Password</label></div>
-	<div><input id="password" type="password"></div>
+	<div><input name="password" type="password"></div>
 	</div>
-	<div>Not registered yet? Click <a href="/Register">here</a></div>
+	<input type="submit" value="Login"/>
+</form>
+	<div>Not registered yet? Click <a href="Register">here</a></div>
 </div>
 </body>
 </html>

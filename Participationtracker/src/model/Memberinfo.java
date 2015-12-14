@@ -1,23 +1,19 @@
 package model;
 
-import java.io.UnsupportedEncodingException;
-import java.security.InvalidAlgorithmParameterException;
-import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
-import java.security.spec.InvalidParameterSpecException;
 import java.util.List;
+import java.util.Set;
 
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.Session;
@@ -32,32 +28,38 @@ public class Memberinfo {
 	
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id", nullable = false)
-	private int id;
+	protected int id;
 	
 	@Column(name = "userid", nullable = false)
-	private String userid;
+	protected String userid;
 
 	@Column(name = "email", nullable = false)
-	private String email;
+	protected String email;
 	   
 	@Column(name = "password", nullable = false)
-	private String password;
+	protected String password;
 	   
 	@Column(name = "salt", nullable = false)
-	private byte[] salt;
+	protected byte[] salt;
 	   
 	@Column(name = "name", nullable = false)
-	private String name;
+	protected String name;
 	   
 	@Column(name = "address")
-	private String address;
+	protected String address;
 	   
 	@Column(name = "phonenum")
-	private String phonenum;
+	protected String phonenum;
 	   
 	@ManyToOne(targetEntity=Role.class)
 	@JoinColumn(name="role_id")
-	private Role role;
+	protected Role role;
+	
+	@OneToMany(mappedBy="teacher")
+	protected Set<Course> taughtCourses;
+	
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy="members")
+	protected Set<model.Session> sessions;
 
 	public int getId() {
 		return id;
@@ -119,14 +121,20 @@ public class Memberinfo {
 		this.role = role;
 	}
 	
+	public Set<model.Session> getSessions(){
+		return this.sessions;
+	}
+	
 	public static List<Memberinfo> getMemberinfos(){
 		Configuration cfg = new Configuration();
+		cfg.addAnnotatedClass(Course.class);
+		cfg.addAnnotatedClass(model.Session.class);
 		cfg.addAnnotatedClass(Memberinfo.class);
 		cfg.addAnnotatedClass(Role.class);
 		cfg.configure("/resources/hibernate.cfg.xml");
 		SessionFactory sf = cfg.buildSessionFactory();
 		Session session = sf.openSession();
-		List<Memberinfo> members = session.createQuery("FROM memberinfo").list();
+		List<Memberinfo> members = session.createQuery("FROM Memberinfo").list();
 		if(members!=null && members.size()>0){
 			return members;
 		}
@@ -174,6 +182,7 @@ public class Memberinfo {
 		return "";
 	}
 	
+	
 	public static String validatePassword(String password, String password_again){
 		if(password.length()<6){
 			return "The password must be at least 6 characters long!";
@@ -198,6 +207,7 @@ public class Memberinfo {
 		
 		this.password =  password;
 		//this.salt = "abc".getBytes();
+		this.salt = "temp".getBytes();
 		
 		//boolean d = PasswordHandler.compare(this.password, "92FK567z", salt);
 	}

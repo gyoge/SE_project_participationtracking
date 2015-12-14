@@ -16,13 +16,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.Course;
 import model.Memberinfo;
 import model.Role;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-
 
 @WebServlet("/Register")
 public class RegisterController extends HttpServlet {
@@ -32,6 +32,8 @@ public class RegisterController extends HttpServlet {
 	
 	public RegisterController(){
 		Configuration cfg = new Configuration();
+		cfg.addAnnotatedClass(model.Session.class);
+		cfg.addAnnotatedClass(Course.class);
 		cfg.addAnnotatedClass(Memberinfo.class);
 		cfg.addAnnotatedClass(Role.class);
 		cfg.configure("/resources/hibernate.cfg.xml");
@@ -55,6 +57,10 @@ public class RegisterController extends HttpServlet {
 		String error = Memberinfo.validateEmail(email);
 		if(error!=""){
 			request.getRequestDispatcher("/WEB-INF/view/register.jsp").forward(request, response);
+			return;
+		}
+		if(Memberinfo.getMemberinfo(uuid)!=null){
+			response.sendRedirect("/WEB-INF/view/register.jsp");
 			return;
 		}
 		error = Memberinfo.validatePassword(password, password_again);

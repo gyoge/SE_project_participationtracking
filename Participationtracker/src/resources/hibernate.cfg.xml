@@ -10,8 +10,6 @@
    <property name="hibernate.connection.driver_class">
       com.mysql.jdbc.Driver
    </property>
-
-   <!-- Assume test is the database name -->
    <property name="hibernate.connection.url">
       jdbc:mysql://mysql.cc.puv.fi/e1100625_participationtracker
    </property>
@@ -21,7 +19,5 @@
    <property name="hibernate.connection.password">
       92FK567z
    </property>
-
-
 </session-factory>
 </hibernate-configuration>

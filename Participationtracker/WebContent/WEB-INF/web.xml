@@ -23,7 +23,22 @@ version="3.0"
 <servlet>
     <servlet-name>Login</servlet-name>
     <servlet-class>controller.LoginController</servlet-class>
-</servlet> 
+</servlet>
+
+<servlet>
+    <servlet-name>Listcourse</servlet-name>
+    <servlet-class>controller.ListCourseController</servlet-class>
+</servlet>
+
+<servlet>
+    <servlet-name>Viewcourse</servlet-name>
+    <servlet-class>controller.ViewCourseController</servlet-class>
+</servlet>
+
+<servlet>
+    <servlet-name>Addcourse</servlet-name>
+    <servlet-class>controller.AddCourseController</servlet-class>
+</servlet>
 
 <servlet-mapping>
     <servlet-name>Register</servlet-name>
@@ -33,4 +48,29 @@ version="3.0"
     <servlet-name>Login</servlet-name>
     <url-pattern>/Login</url-pattern>
 </servlet-mapping>
+
+<servlet-mapping>
+    <servlet-name>Listcourse</servlet-name>
+    <url-pattern>/Listcourse</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+    <servlet-name>Viewcourse</servlet-name>
+    <url-pattern>/Viewcourse</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+    <servlet-name>Addcourse</servlet-name>
+    <url-pattern>/Addcourse</url-pattern>
+</servlet-mapping>
+
+  <filter>
+    <filter-name>SessionCheckFilter</filter-name>
+    <filter-class>utils.SessionCheckFilter</filter-class>
+</filter>
+<filter-mapping>
+    <filter-name>SessionCheckFilter</filter-name>
+    <url-pattern>/Listcourse</url-pattern>
+</filter-mapping>
+
 </web-app>

@@ -4,6 +4,8 @@
 <html>
   <body>
     <div id="pageheader">
+    <a href="Listcourse">List Course</a>
+    <a href="/Listcourse">List Users</a>
       <jsp:invoke fragment="header"/>
     </div>
     <div id="body">
