@@ -10,6 +10,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.Memberinfo;
 
@@ -27,14 +28,11 @@ public class SessionCheckFilter implements Filter {
 	    HttpServletRequest req = (HttpServletRequest) request;
 	    HttpServletResponse res = (HttpServletResponse) response;
 	    
-	    String path = req.getRequestURL().toString();
-
-	    if (req.getSession().getAttribute("LOGIN_USER") == null) { //checks if there's a LOGIN_USER set in session...
-	        res.sendRedirect(contextPath + "/Login"); //or page where you want to redirect
+	    if (req.getSession().getAttribute("LOGIN_USER") == null) { //checks if there's a LOGIN_USER set in session
+	 	   req.getSession().setAttribute("ORIGIN_PAGE", req.getRequestURI().split("/")[req.getRequestURI().split("/").length-1]);
+	        res.sendRedirect(contextPath + "/Login");
 	    } else {
-	      Memberinfo user = (Memberinfo) req.getSession().getAttribute("LOGIN_USER");
 	      fc.doFilter(request, response);
-	      //res.sendRedirect(path);
 	    }
 	  }
 

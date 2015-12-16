@@ -15,23 +15,23 @@
 	<label>Name</label>
 	</div>
 	<div>
-	<input type="text" name="name" value="Gergely Györki" />
+	<input type="text" name="name"/>
 	</div>
 </div>
 
 <div>
 <div><label>Uuid</label></div>
-<div><input type="text" name="uuid" value="e1100625" /></div>
+<div><input type="text" name="uuid"/></div>
 </div>
 
 <div>
 <div><label>Email</label></div>
-<div><input type="text" name="email" value="e1100625@edu.vamk.fi" /></div>
+<div><input type="text" name="email"/></div>
 </div>
 
 <div>
 <div><label>Password</label></div>
-<div><input type="password" name="password" /></div>
+<div><input type="password" name="password" />Currently the password system is not secure yet! Please do not provide your everyday used password!</div>
 </div>
 
 <div>
@@ -41,12 +41,12 @@
 
 <div>
 <div><label>Address</label></div>
-<div><input type="text" name="address" value="e11" /></div>
+<div><input type="text" name="address" /></div>
 </div>
 
 <div>
 <div><label>Phone number</label></div>
-<div><input type="text" name="phonenum" value="1234" /></div>
+<div><input type="text" name="phonenum"/></div>
 </div>
 
 <input type="submit" value="Submit" />

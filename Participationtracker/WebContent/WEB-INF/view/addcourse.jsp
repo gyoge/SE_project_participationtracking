@@ -19,22 +19,22 @@
 <form action="Addcourse" method="POST">
 <div>
 <div><label>Name</label></div>
-<div><input id="name" /></div>
+<div><input name="name" /></div>
 </div>
 
 <div>
 <div><label>Code</label></div>
-<div><input id="code"/></div>
+<div><input name="code"/></div>
 </div>
 
 <div>
 <div><label>Start date</label></div>
-<div><input id="date"/></div>
+<div><input name="date"/></div>
 </div>
 
 <div>
 <div><label>Description</label></div>
-<div><input id="description"/></div>
+<div><input name="description"/></div>
 </div>
 
 <input type="submit" value="Add course">

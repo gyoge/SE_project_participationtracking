@@ -40,6 +40,11 @@ version="3.0"
     <servlet-class>controller.AddCourseController</servlet-class>
 </servlet>
 
+<servlet>
+    <servlet-name>Addsession</servlet-name>
+    <servlet-class>controller.AddSessionController</servlet-class>
+</servlet>
+
 <servlet-mapping>
     <servlet-name>Register</servlet-name>
     <url-pattern>/Register</url-pattern>
@@ -64,6 +69,11 @@ version="3.0"
     <url-pattern>/Addcourse</url-pattern>
 </servlet-mapping>
 
+<servlet-mapping>
+    <servlet-name>Addsession</servlet-name>
+    <url-pattern>/Addsession</url-pattern>
+</servlet-mapping>
+
   <filter>
     <filter-name>SessionCheckFilter</filter-name>
     <filter-class>utils.SessionCheckFilter</filter-class>
@@ -71,6 +81,9 @@ version="3.0"
 <filter-mapping>
     <filter-name>SessionCheckFilter</filter-name>
     <url-pattern>/Listcourse</url-pattern>
+    <url-pattern>/Addcourse</url-pattern>
+    <url-pattern>/Viewcourse</url-pattern>
+    <url-pattern>/Addsession</url-pattern>
 </filter-mapping>
 
 </web-app>

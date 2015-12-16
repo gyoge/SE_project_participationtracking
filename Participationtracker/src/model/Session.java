@@ -27,6 +27,9 @@ public class Session {
 	@Column(name="date", nullable = false)
 	private Date dateTime;
 	
+	@Column(name="duration", nullable = false)
+	private int duration;
+	
 	@Column(name="description", nullable = false)
 	private String description;
 	
@@ -53,6 +56,15 @@ public class Session {
 	public void setDate(Date dateTime){
 		this.dateTime = dateTime;
 	}
+	
+	public int getDuration(){
+		return duration;
+	}
+	
+	public void setDuration(int duration){
+		this.duration = duration;
+	}
+	
 	public String getDescription(){
 		return description;
 	}
@@ -81,9 +93,9 @@ public class Session {
 	public Session(){}
 	
 	// Constructor for Session class
-	public Session( Date dateTime, String description, Course course){
-		
+	public Session( Date dateTime, int duration, String description, Course course){
 		this.dateTime = dateTime;
+		this.duration = duration;
 		this.description = description;
 		this.course = course;
 	}

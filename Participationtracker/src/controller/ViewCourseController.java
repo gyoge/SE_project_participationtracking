@@ -48,7 +48,9 @@ public class ViewCourseController extends HttpServlet {
 		List<model.Session> sessionlist = query.list();
 		
 		request.setAttribute("course", course);
+		request.setAttribute("courseid", course.getId());
 		request.setAttribute("sessionlist", sessionlist);
+		request.setAttribute("role", ((Memberinfo)request.getSession().getAttribute("LOGIN_USER")).getRole().getId());
 
 		request.getRequestDispatcher("/WEB-INF/view/viewcourse.jsp").forward(request, response);
 		

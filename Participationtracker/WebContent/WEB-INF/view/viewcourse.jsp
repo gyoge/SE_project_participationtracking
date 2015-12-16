@@ -17,40 +17,53 @@
 <h3><c:out value="${course.getName()}"/></h3>
 
 <div>
-<div><label>Code</label></div>
+<div><label><b>Code</b></label></div>
 <div><c:out value="${course.getCode()}"/></div>
 </div>
 
 <div>
-<div><label>Start date</label></div>
+<div><label><b>Start date</b></label></div>
 <div><fmt:formatDate value="${course.getDate()}" pattern="yyyy-MM-dd"/></div>
 </div>
 
 <div>
-<div><label>Description</label></div>
+<div><label><b>Description</b></label></div>
 <div><c:out value="${course.getDescription()}"/></div>
 </div>
 <div>
-<div><label>Teacher</label></div>
+<div><label><b>Teacher</b></label></div>
 <div><c:out value="${course.getTeacher().getName()}"/></div>
 </div>
 
 <hr/>
 <h3>Sessions</h3>
+<form action="Addsession" method="POST">
+<input type="hidden" name="courseid" value="${courseid}">
 <table>
 	<tr>
 		<th>Date</th>
+		<th>Duration</th>
 		<th>Description</th>
 	</tr>
 
 <c:forEach items="${sessionlist}" var="session">
 	<tr>
-		<td><fmt:formatDate value="${session.getDate()}" pattern="yyyy-MM-dd"/></td>
+		<td><fmt:formatDate value="${session.getDate()}" pattern="yyyy-MM-dd HH:mm"/></td>
+		<td><c:out value="${session.getDuration()}" /></td>
 		<td><c:out value="${session.getDescription()}"/></td>
 	</tr>
 </c:forEach>
+	<c:if test="${role > 1}">
+	     <tr>
+		    <td><input name="date"/></td>
+		    <td><input name="duration" /></td>
+		    <td><input name="description"/></td>
+		    <td><input type="submit" value="Add session" /></td>
+		</tr>
+    </c:if>
 </table>
 
+</form>
 
 </body>
 </l:layout>

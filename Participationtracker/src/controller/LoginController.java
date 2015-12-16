@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -42,21 +43,31 @@ public class LoginController extends HttpServlet{
 		 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
+		List<String> errorlist = new ArrayList<String>();
+		String target = "/WEB-INF/view/login.jsp";
 		Memberinfo user = Memberinfo.getMemberinfo(request.getParameter("userid"));
 		String password = request.getParameter("password");
-		if(user!=null){
-			if(Memberinfo.login(user, password)==""){
-				HttpSession session = request.getSession();
-	            session.setAttribute("LOGIN_USER", user);
-	            session.setMaxInactiveInterval(30*60);
-	            Cookie userName = new Cookie("LOGIN_USER", user.getUserid());
-	            userName.setMaxAge(30*60);
-	            response.addCookie(userName);
-	            response.sendRedirect("Listcourse");
-			}
+		
+		if(user!=null && Memberinfo.login(user, password)==""){
+			HttpSession session = request.getSession();
+			String originpage = (String) session.getAttribute("ORIGIN_PAGE");
+            session.setAttribute("LOGIN_USER", user);
+            session.setMaxInactiveInterval(30*60);
+            
+            if(originpage==null || originpage.equals("")){
+            	target = "Listcourse";
+            }else{
+            	target = originpage;
+            }
 		} else {
-			
+			errorlist.add("Userid not found or password does not match!");
+		}
+		
+		if(errorlist.size()>0){
+			request.setAttribute("errorlist",errorlist);
 			request.getRequestDispatcher("/WEB-INF/view/login.jsp").forward(request, response);
+		} else {
+			response.sendRedirect(target);
 		}
 	}
 }

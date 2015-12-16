@@ -6,6 +6,8 @@ import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.InvalidParameterSpecException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
@@ -49,30 +51,32 @@ public class RegisterController extends HttpServlet {
 			 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
-		
+		List<String> errorlist = new ArrayList<String>();
 		String uuid = request.getParameter("uuid");
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		String password_again = request.getParameter("password_again");
-		String error = Memberinfo.validateEmail(email);
-		if(error!=""){
-			request.getRequestDispatcher("/WEB-INF/view/register.jsp").forward(request, response);
-			return;
-		}
-		if(Memberinfo.getMemberinfo(uuid)!=null){
-			response.sendRedirect("/WEB-INF/view/register.jsp");
-			return;
-		}
-		error = Memberinfo.validatePassword(password, password_again);
-		if(error!=""){
-			request.getRequestDispatcher("/WEB-INF/view/register.jsp").forward(request, response);
-			return;
-		}
-		
 		String name = request.getParameter("name");
 		String address = request.getParameter("address");
 		String phonenum = request.getParameter("phonenum");
 
+		String error = Memberinfo.validateEmail(email);
+		if(error!=""){
+			errorlist.add(error);
+		}
+		if(Memberinfo.getMemberinfo(uuid)!=null){
+			errorlist.add("This user id already exists!");
+		}
+		error = Memberinfo.validatePassword(password, password_again);
+		if(error!=""){
+			errorlist.add(error);
+		}
+		if(errorlist.size()>0){
+			request.setAttribute("errorlist", errorlist);
+			request.getRequestDispatcher("/WEB-INF/view/register.jsp").forward(request, response);
+			return;
+		}
+		
 		Session session = sf.openSession();
 		Role role = (Role) session.createQuery("from Role where id=1").list().get(0);
 		Memberinfo newmember = null;

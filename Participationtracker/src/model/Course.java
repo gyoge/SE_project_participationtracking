@@ -89,6 +89,14 @@ public class Course {
 		//default constructor
 		public Course(){}
 		
+		public Course(String name, String code, Date date, String description, Memberinfo teacher){
+			this.name = name;
+			this.code = code;
+			this.startdate = date;
+			this.description = description;
+			this.teacher = teacher;
+		}
+		
 		public	String addStudent(Student student){
 			return "";
 		}
